@@ -12,6 +12,7 @@
 
       gtag('config', 'UA-145252783-1');
     </script>
+
     <style>
       a {
         color:black;
@@ -20,14 +21,13 @@
       h1 {
         font-size:50px;
         text-align:center;
-        border-bottom:2px solid gray;
         margin: 0;
         padding: 20px;
       }
 
       #grid1 {
-        display: grid; /*그리드를 사용할땐 이건 무조건 써줌*/
-        grid-template-columns: 200px 1fr;/*columns는 열 row는 행 // 첫번쨰 200px는 ol 두번째 1fr는 인생강의*/
+        display: grid; /*그리드를 사용할땐 이건 무조건 써줌 속성값을 none으로하면 아무것도 안보이게 함*/
+        grid-template-columns: 200px 1fr;/*columns는 열 row는 행 // 첫번쨰 200px는 ol 두번째 1fr는 Web프로그래밍 교육*/
       }
 
       #grid1 ol {
@@ -40,19 +40,74 @@
       #grid1 #life {
         padding-left: 20px;
       }
+
+      @media(max-width:800px) {
+        #grid1 {
+          display: block;
+        }
+        #grid1 ol {
+          border-right: none;
+        }
+      }
+
+      #myButton {
+        text-align: left;
+        border-bottom:2px solid gray;
+        padding-bottom: 20px;
+      }
+
+      #oneButton {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
     </style>
   </head>
+
   <body>
-    <h1> WEB </h1>
+    <h1> <a href="index.html" style="text-decoration:none"> WEB </a> </h1>
+
+    <div id="myButton">
+    <input id= "oneButton" type="button" value="night" onclick="abc1()"
+    title="이 버튼을 누르면 '야간모드/밝은모드'를 설정할 수 있습니다."
+    style="width:60pt; height:25pt; font-Size:20px;">
+    </div>
+
+    <script>
+    function abc1() {
+      if(document.querySelector('#oneButton').value === 'night') {
+          document.bgColor = 'black';
+          document.fgColor = 'white';
+          document.querySelector('a').style.color = 'white';
+          var jb = document.querySelectorAll('#grid1 a');
+          for (var i = 0; i<jb.length; i++) {
+            jb[i].style.color = 'white';
+          }
+          document.querySelector('#oneButton').value = 'light';
+        }
+        else {
+          document.bgColor = 'white';
+          document.fgColor = 'black';
+          document.querySelector('a').style.color = 'black';
+          var jb = document.querySelectorAll('#grid1 a');
+          for (var i = 0; i<jb.length; i++) {
+            jb[i].style.color = 'black';
+          }
+          document.querySelector('#oneButton').value = 'night';
+        }
+      }
+    </script>
+
     <div id="grid1">
       <ol>
         <li> <a href="1.html"> HTML </a></li><br>
-        <li> <a href="2.html" style="color:red"> CSS </a></li><br>
+        <li> <a href="2.html"> CSS </a></li><br>
         <li> <a href="3.html"> JavaScript </a></li><br>
       </ol>
 
       <div id="life">
-        <p> 인생강의 </p>
+        <p> Web프로그래밍 교육 </p>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/tZooW6PritE" frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
